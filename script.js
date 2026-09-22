@@ -1490,3 +1490,125 @@ document.addEventListener("input", function (event) {
     }
 
 });
+/* =========================================================
+   MOBILE APP SCREEN NAVIGATION
+   Does NOT modify DPDA simulation logic
+   ========================================================= */
+
+(function () {
+
+    function isMobileApp() {
+        return window.matchMedia("(max-width: 768px)").matches;
+    }
+
+    function createMobileBackButton() {
+
+        if (document.getElementById("mobileBackButton")) {
+            return;
+        }
+
+        const runCard = document.querySelector(
+            "#simulator > .card:nth-child(5)"
+        );
+
+        if (!runCard) return;
+
+        const button = document.createElement("button");
+
+        button.id = "mobileBackButton";
+        button.className = "mobile-back-button";
+        button.innerHTML = "← Back to Configuration";
+
+        button.addEventListener("click", function () {
+            exitMobileSimulation();
+        });
+
+        runCard.insertBefore(button, runCard.firstChild);
+    }
+
+
+    function enterMobileSimulation() {
+
+        if (!isMobileApp()) {
+
+            document
+                .getElementById("simulator")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+            return;
+        }
+
+        createMobileBackButton();
+
+        document.body.classList.add(
+            "mobile-simulation-mode"
+        );
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+        setTimeout(function () {
+
+            const input = document.getElementById(
+                "inputString"
+            );
+
+            if (input) {
+                input.focus();
+            }
+
+        }, 350);
+    }
+
+
+    function exitMobileSimulation() {
+
+        document.body.classList.remove(
+            "mobile-simulation-mode"
+        );
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+
+    /* Replace the old scrolling behavior */
+    window.scrollToSimulator = function () {
+
+        enterMobileSimulation();
+
+    };
+
+
+    /* Make functions available if needed */
+    window.enterMobileSimulation =
+        enterMobileSimulation;
+
+    window.exitMobileSimulation =
+        exitMobileSimulation;
+
+
+    /*
+       If the user rotates the phone or changes
+       between mobile/desktop mode, automatically
+       return to the normal desktop layout.
+    */
+    window.addEventListener("resize", function () {
+
+        if (!isMobileApp()) {
+
+            document.body.classList.remove(
+                "mobile-simulation-mode"
+            );
+
+        }
+
+    });
+
+})();
