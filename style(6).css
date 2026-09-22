@@ -1541,3 +1541,446 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+/* =========================================================
+   MOBILE APP SCREEN MODE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    /*
+       Normal mobile mode
+       ------------------
+       The existing mobile CSS continues to work.
+    */
+
+
+    /* ---------------------------------------------
+       SIMULATION SCREEN
+       --------------------------------------------- */
+
+    body.mobile-simulation-mode {
+        overflow-x: hidden;
+    }
+
+
+    /* Hide the home/landing area */
+    body.mobile-simulation-mode .hero {
+        display: none;
+    }
+
+
+    /* Hide simulator heading */
+    body.mobile-simulation-mode
+    .simulator-section > .section-title {
+        display: none;
+    }
+
+
+    /*
+       Hide configuration cards.
+
+       Children:
+       1 = section title
+       2 = 7-tuple configuration
+       3 = transition function
+       4 = transition diagram
+       5 = run simulation
+       6 = execution trace
+    */
+
+    body.mobile-simulation-mode
+    #simulator > .card:nth-child(2),
+
+    body.mobile-simulation-mode
+    #simulator > .card:nth-child(3),
+
+    body.mobile-simulation-mode
+    #simulator > .card:nth-child(4) {
+        display: none;
+    }
+
+
+    /* Show Run Simulation card */
+    body.mobile-simulation-mode
+    #simulator > .card:nth-child(5) {
+        display: block;
+    }
+
+
+    /* Show execution trace */
+    body.mobile-simulation-mode
+    #simulator > .card:nth-child(6) {
+        display: block;
+    }
+
+
+    /*
+       Make simulation section behave like
+       a full mobile application screen.
+    */
+
+    body.mobile-simulation-mode
+    .simulator-section {
+
+        min-height: 100vh;
+
+        padding-top: 16px;
+        padding-bottom: 40px;
+
+        margin: 0;
+
+    }
+
+
+    /* ---------------------------------------------
+       APP BACK BUTTON
+       --------------------------------------------- */
+
+    .mobile-back-button {
+
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        gap: 8px;
+
+        border: none;
+
+        background: transparent;
+
+        color: var(--ink);
+
+        font-family: inherit;
+
+        font-size: 15px;
+        font-weight: 700;
+
+        padding: 4px 0 18px 0;
+
+        cursor: pointer;
+
+        -webkit-tap-highlight-color: transparent;
+
+    }
+
+
+    .mobile-back-button:active {
+        transform: scale(0.98);
+    }
+
+
+    /* ---------------------------------------------
+       SIMULATION CARD
+       --------------------------------------------- */
+
+    body.mobile-simulation-mode
+    #simulator > .card:nth-child(5) {
+
+        border-radius: 22px;
+
+        margin-bottom: 18px;
+
+        padding: 18px;
+
+    }
+
+
+    body.mobile-simulation-mode
+    #simulator > .card:nth-child(6) {
+
+        border-radius: 22px;
+
+        padding: 18px;
+
+    }
+
+
+    /* ---------------------------------------------
+       MOBILE APP HEADER EFFECT
+       --------------------------------------------- */
+
+    body.mobile-simulation-mode header {
+
+        position: sticky;
+
+        top: 0;
+
+        z-index: 1000;
+
+        padding-top: max(
+            10px,
+            env(safe-area-inset-top)
+        );
+
+    }
+
+
+    /* ---------------------------------------------
+       INPUT
+       --------------------------------------------- */
+
+    body.mobile-simulation-mode
+    .input-box input {
+
+        width: 100%;
+
+        min-height: 52px;
+
+        font-size: 17px;
+
+        border-radius: 14px;
+
+        box-sizing: border-box;
+
+    }
+
+
+    /* ---------------------------------------------
+       SIMULATION BUTTONS
+       --------------------------------------------- */
+
+    body.mobile-simulation-mode
+    .simulation-controls {
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 12px;
+
+    }
+
+
+    body.mobile-simulation-mode
+    .simulation-controls button {
+
+        width: 100%;
+
+        min-height: 52px;
+
+        border-radius: 14px;
+
+        font-size: 16px;
+
+        touch-action: manipulation;
+
+    }
+
+
+    body.mobile-simulation-mode
+    .run-btn {
+
+        order: 2;
+
+    }
+
+
+    body.mobile-simulation-mode
+    .step-btn {
+
+        order: 3;
+
+    }
+
+
+    body.mobile-simulation-mode
+    .reset-btn {
+
+        order: 4;
+
+    }
+
+
+    /* ---------------------------------------------
+       STATUS CARDS
+       --------------------------------------------- */
+
+    body.mobile-simulation-mode
+    .status-grid {
+
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 10px;
+
+        margin-top: 18px;
+
+    }
+
+
+    body.mobile-simulation-mode
+    .status-card {
+
+        min-height: 82px;
+
+        border-radius: 16px;
+
+        padding: 14px;
+
+        box-sizing: border-box;
+
+    }
+
+
+    body.mobile-simulation-mode
+    .status-card h3 {
+
+        font-size: 20px;
+
+        margin-top: 7px;
+
+        word-break: break-word;
+
+    }
+
+
+    /* ---------------------------------------------
+       STACK + RESULT
+       --------------------------------------------- */
+
+    body.mobile-simulation-mode
+    .visualization {
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 16px;
+
+        margin-top: 18px;
+
+    }
+
+
+    body.mobile-simulation-mode
+    .stack-container,
+
+    body.mobile-simulation-mode
+    .result-box {
+
+        width: 100%;
+
+        box-sizing: border-box;
+
+        border-radius: 18px;
+
+    }
+
+
+    /* ---------------------------------------------
+       EXECUTION TRACE
+       --------------------------------------------- */
+
+    body.mobile-simulation-mode
+    .trace-title {
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 8px;
+
+    }
+
+
+    body.mobile-simulation-mode
+    .table-container {
+
+        width: 100%;
+
+        overflow-x: auto;
+
+        -webkit-overflow-scrolling: touch;
+
+        border-radius: 14px;
+
+    }
+
+
+    body.mobile-simulation-mode
+    .table-container table {
+
+        min-width: 650px;
+
+    }
+
+
+    /* ---------------------------------------------
+       DIAGRAM IS HIDDEN ON SIMULATION SCREEN
+       --------------------------------------------- */
+
+    body.mobile-simulation-mode
+    .diagram-card {
+
+        display: none !important;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    body.mobile-simulation-mode
+    .simulator-section {
+
+        padding-left: 12px;
+        padding-right: 12px;
+
+    }
+
+
+    body.mobile-simulation-mode
+    #simulator > .card:nth-child(5),
+
+    body.mobile-simulation-mode
+    #simulator > .card:nth-child(6) {
+
+        padding: 15px;
+
+        border-radius: 18px;
+
+    }
+
+
+    body.mobile-simulation-mode
+    .status-grid {
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 8px;
+
+    }
+
+
+    body.mobile-simulation-mode
+    .status-card {
+
+        padding: 12px;
+
+    }
+
+
+    body.mobile-simulation-mode
+    .status-card span {
+
+        font-size: 11px;
+
+    }
+
+
+    body.mobile-simulation-mode
+    .status-card h3 {
+
+        font-size: 18px;
+
+    }
+
+}
